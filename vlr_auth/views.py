@@ -1,13 +1,13 @@
 from django.shortcuts import redirect, render
 from .forms import SignUpForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
 )
 from .models import Profile
-from .permissions import IsOwnerOrReadOnly,EveryOne
+from .permissions import IsOwnerOrReadOnly
 from .serializers import UserSerializer
 from rest_framework import permissions
 
@@ -51,6 +51,7 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
 def login(request):
     return render(request, 'registration/login.html')
 
