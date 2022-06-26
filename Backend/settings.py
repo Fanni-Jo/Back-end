@@ -18,6 +18,10 @@ env = environ.Env(
     DATABASE_PASSWORD=(str, ""),
     DATABASE_HOST=(str, ""),
     DATABASE_PORT=(int, 5432),
+    EMAIL_HOST=(str, ""),
+    EMAIL_HOST_USER=(str, ""),
+    EMAIL_HOST_PASSWORD=(str, ""),
+    RECIPIENT_ADDRESS=(str, ""),
 )
 environ.Env.read_env()
 
@@ -47,11 +51,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3rd party
     "rest_framework",
-    "corsheaders",
-    'rest_framework_simplejwt.token_blacklist',
     'phonenumber_field', 
+    "corsheaders",
     # My app     
-    'vlr_auth',  
+    'vlr_auth',
+    'contactus', 
 ]
 
 MIDDLEWARE = [
@@ -169,4 +173,13 @@ SIMPLE_JWT = {
 
 CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+RECIPIENT_ADDRESS = env('RECIPIENT_ADDRESS')
+
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

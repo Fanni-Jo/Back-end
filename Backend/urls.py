@@ -22,12 +22,18 @@ from rest_framework_simplejwt.views import (TokenObtainPairView,
                                             TokenVerifyView
                                             )
 
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path('token/', TokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),
     path('token/verify/', TokenVerifyView.as_view()),
     path('api/', include('vlr_auth.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('contact_us/', include('contactus.urls')),
     path('admin/', admin.site.urls),
+    path("login/", auth_views.LoginView.as_view(template_name="registration/login.html"), name="login"),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password/password_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="password/password_reset_confirm.html"), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password/password_reset_complete.html'), name='password_reset_complete'),  
 ]
