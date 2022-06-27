@@ -49,7 +49,7 @@ class Worker(models.Model):
     last_name = models.CharField(verbose_name='worker last name', max_length=10000, unique=True)
     username=models.CharField(verbose_name='username', max_length=10000, unique=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE,verbose_name='service type')
-    phone = PhoneNumberField(verbose_name='phone no.')
+    phone = PhoneNumberField(verbose_name='phone no.',unique=True)
     phone2 = PhoneNumberField(null=True, blank=True,verbose_name='secondary phone no.')
     email = models.EmailField(verbose_name='email',unique=True)
     address = models.TextField(verbose_name='address')
@@ -90,8 +90,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = PhoneNumberField(null=False, blank=False, unique=True,region='JO')
     profile_picture=models.ImageField(upload_to='profile_pictures/',blank=True)
-    # birthdate=models.DateField(null=True, blank=True)
-    # gender= models.CharField(max_length=6,choices=[('MALE','MALE'),('FEMALE','FEMALE')])
+    birthdate=models.DateField(null=True, blank=True)
+    # gender= models.CharField(max_length=6,choices=[('MALE','MALE'),('FEMALE','FEMALE')],default="MALE")
     
     def __str__(self):
         return self.user.username

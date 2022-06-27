@@ -148,8 +148,7 @@ class RegisterView(APIView):
                         # profile=Profile.objects.create(
                         #         phone_number=phone_number,
                         #         profile_picture=profile_picture,
-                        #     )
-                    
+                        #     )                       
                         user.save()
                         # profile.save()
                         if User.objects.filter(username=username).exists():
