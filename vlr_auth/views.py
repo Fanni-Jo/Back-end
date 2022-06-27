@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions, status
 from django.contrib.auth.models import User
-from .serializers import UserSerializer,UserDetailSerializer
+from .serializers import UserSerializer,UserDetailSerializer,workerDetailSerializer,workerSerializer
 from django.core.exceptions import ValidationError 
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
@@ -20,6 +20,7 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
 )
 from .permissions import IsOwnerOrReadOnly
+from .models import Worker
 
 # {
 #     "first_name": "John",
@@ -31,76 +32,85 @@ from .permissions import IsOwnerOrReadOnly
 #     "re_password": "123456barham",
     
 # }
-class Sigup(ListCreateAPIView):
+class workerkerdetail(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly, )
+    queryset=Worker.objects.all()
+    serializer_class = workerDetailSerializer     
+    lookup_field = 'username'
+
+class Signup(ListCreateAPIView):
     permission_classes = (permissions.AllowAny, )
+    queryset=Worker.objects.all()
+    serializer_class = workerSerializer     
+    
 
-    def post(self, request):
-        try:
-            data = request.data
+    # def post(self, request):
+    #     try:
+    #         data = request.data
             
-            first_name = data['first_name']
-            last_name = data['last_name']
-            username = data['username']
-            email= data['email'].lower()
-            phone_number = data['phone_number']
-            password = data['password']
-            re_password = data['re_password']
-            # profile_picture = data['profile_picture']
+    #         first_name = data['first_name']
+    #         last_name = data['last_name']
+    #         username = data['username']
+    #         email= data['email'].lower()
+    #         phone_number = data['phone_number']
+    #         password = data['password']
+    #         re_password = data['re_password']
+    #         # profile_picture = data['profile_picture']
             
-            num=Profile.objects.filter(phone_number=phone_number)
-            if num:
-                raise ValidationError(" Phone Number Already In Use")  
+    #         num=Profile.objects.filter(phone_number=phone_number)
+    #         if num:
+    #             raise ValidationError(" Phone Number Already In Use")  
 
-            new = User.objects.filter(email=email)  
-            if new.count():  
-                raise ValidationError(" Email Already Exist")  
-            if password == re_password:
-                if len(password) >= 8:
-                    if not User.objects.filter(username=username).exists():
-                        user = User.objects.create_user(
-                            first_name=first_name,
-                            last_name=last_name,
-                            username=username,
-                            email=email,
-                            password=password,
-                        )
-                        # profile=Profile.objects.create(
-                        #         phone_number=phone_number,
-                        #         profile_picture=profile_picture,
-                        #     )
+    #         new = User.objects.filter(email=email)  
+    #         if new.count():  
+    #             raise ValidationError(" Email Already Exist")  
+    #         if password == re_password:
+    #             if len(password) >= 8:
+    #                 if not User.objects.filter(username=username).exists():
+    #                     user = User.objects.create_user(
+    #                         first_name=first_name,
+    #                         last_name=last_name,
+    #                         username=username,
+    #                         email=email,
+    #                         password=password,
+    #                     )
+    #                     # profile=Profile.objects.create(
+    #                     #         phone_number=phone_number,
+    #                     #         profile_picture=profile_picture,
+    #                     #     )
                     
-                        user.save()
-                        # profile.save()
-                        if User.objects.filter(username=username).exists():
-                            return Response(
-                                {'success': 'Account created successfully'},
-                                status=status.HTTP_201_CREATED
-                            )
-                        else:
-                            return Response(
-                                {'error': 'Something went wrong when trying to create account'},
-                                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                            )
-                    else:
-                        return Response(
-                            {'error': 'Username already exists'},
-                            status=status.HTTP_400_BAD_REQUEST
-                        )
-                else:
-                    return Response(
-                        {'error': 'Password must be at least 8 characters in length'},
-                        status=status.HTTP_400_BAD_REQUEST
-                    )
-            else:
-                return Response(
-                    {'error': 'Passwords do not match'},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
-        except:
-            return Response(
-                {'error': 'Something went wrong when trying to register account'},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+    #                     user.save()
+    #                     # profile.save()
+    #                     if User.objects.filter(username=username).exists():
+    #                         return Response(
+    #                             {'success': 'Account created successfully'},
+    #                             status=status.HTTP_201_CREATED
+    #                         )
+    #                     else:
+    #                         return Response(
+    #                             {'error': 'Something went wrong when trying to create account'},
+    #                             status=status.HTTP_500_INTERNAL_SERVER_ERROR
+    #                         )
+    #                 else:
+    #                     return Response(
+    #                         {'error': 'Username already exists'},
+    #                         status=status.HTTP_400_BAD_REQUEST
+    #                     )
+    #             else:
+    #                 return Response(
+    #                     {'error': 'Password must be at least 8 characters in length'},
+    #                     status=status.HTTP_400_BAD_REQUEST
+    #                 )
+    #         else:
+    #             return Response(
+    #                 {'error': 'Passwords do not match'},
+    #                 status=status.HTTP_400_BAD_REQUEST
+    #             )
+    #     except:
+    #         return Response(
+    #             {'error': 'Something went wrong when trying to register account'},
+    #             status=status.HTTP_500_INTERNAL_SERVER_ERROR
+    #         )
 
 class RegisterView(APIView):
     permission_classes = (permissions.AllowAny, )
@@ -230,3 +240,5 @@ def home(request):
 def logout_view(request):
     logout(request)
     return home(request)
+
+
