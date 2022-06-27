@@ -4,7 +4,10 @@ from .views import (RegisterView,
                     password_reset_request,
                     home,
                     logout_view,
-                    LoadUserdetail)
+                    LoadUserdetail,
+                    Signup,
+                    workerkerdetail,
+                    )
 
 
 urlpatterns = [
@@ -14,4 +17,6 @@ urlpatterns = [
     path("home/", home, name="home"),
     path("logout/", logout_view, name="logout"),
     path("userdetail/<str:username>", LoadUserdetail.as_view(), name="userdetail"),
+    path("signup/worker", Signup.as_view(), name="signup"),
+    path("workerdetail/<str:username>", workerkerdetail.as_view(), name="workerdetail"),
 ]
