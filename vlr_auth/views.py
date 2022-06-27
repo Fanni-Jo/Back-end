@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions, status
 from django.contrib.auth.models import User
-from .serializers import UserSerializer,UserDetailSerializer,workerDetailSerializer,workerSerializer
+from .serializers import UserSerializer,UserDetailSerializer,workerDetailSerializer,workerSerializer ,ReviewSerializer
 from django.core.exceptions import ValidationError 
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
@@ -14,7 +14,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib.auth import logout
-from .models import Profile
+from .models import Profile ,Review
 from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
@@ -42,6 +42,12 @@ class Signup(ListCreateAPIView):
     permission_classes = (permissions.AllowAny, )
     queryset=Worker.objects.all()
     serializer_class = workerSerializer     
+
+
+class ReviewViewSet(ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_classes = (permissions.IsAuthenticated , )
     
 
     # def post(self, request):

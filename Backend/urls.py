@@ -23,7 +23,10 @@ from rest_framework_simplejwt.views import (TokenObtainPairView,
                                             )
 
 from django.contrib.auth import views as auth_views
-
+# from rest_framework import routers
+# from .views import  ReviewViewSet
+# router =routers.DefaultRouter()
+# router.register("review", ReviewViewSet)
 urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path('token/', TokenObtainPairView.as_view()),

@@ -1,7 +1,7 @@
 from attr import field
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Worker
+from .models import Worker ,Review
 
 class UserSerializer(serializers.ModelSerializer):
     
@@ -25,5 +25,11 @@ class workerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Worker
         fields = "__all__"
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Review
+        fields =('id' ,'stars','review','date','text')
 
         

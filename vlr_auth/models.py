@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
+from django.core.validators import MaxValueValidator , MinValueValidator
 # from mptt.models import MPTTModel, TreeForeignKey
 
 # class NewUserProfile(AbstractUser):
@@ -93,5 +94,31 @@ class Profile(models.Model):
     birthdate=models.DateField(null=True, blank=True)
     # gender= models.CharField(max_length=6,choices=[('MALE','MALE'),('FEMALE','FEMALE')],default="MALE")
     
+    def __str__(self):
+        return self.user.username
+
+
+
+
+
+
+# RATE_CHOICES =[
+#     (1 ,'1 -Horrible'),
+#     (2 ,'2 -Bad'),
+#     (3 ,'3 -Good'),
+#     (4 ,'4 -Very Good'),
+#     (5 ,'5 -Perfect'),
+
+
+# ]
+class Review(models.Model):
+    review=models.ForeignKey(User ,on_delete=models.CASCADE)
+    date=models.DateTimeField(auto_now_add=True)
+    text=models.TextField(max_length=3000 ,blank =True)
+    stars=models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
+
+    # class Meta:
+    #     unique_together =
+
     def __str__(self):
         return self.user.username

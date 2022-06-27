@@ -7,6 +7,7 @@ from .views import (RegisterView,
                     LoadUserdetail,
                     Signup,
                     workerkerdetail,
+                    ReviewViewSet
                     )
 
 
@@ -19,4 +20,5 @@ urlpatterns = [
     path("userdetail/<str:username>", LoadUserdetail.as_view(), name="userdetail"),
     path("signup/worker", Signup.as_view(), name="signup"),
     path("workerdetail/<str:username>", workerkerdetail.as_view(), name="workerdetail"),
+    path("review/", ReviewViewSet.as_view(), name="review"),
 ]
