@@ -37,6 +37,9 @@ SECRET_KEY = env.str("SECRET_KEY")
 DEBUG = env.bool
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+
+AUTH_USER_MODEL ='accounts.User'
+
 ENVIRONMENT = env.str("ENVIRONMENT")
 
 
@@ -54,8 +57,9 @@ INSTALLED_APPS = [
     'phonenumber_field', 
     "corsheaders",
     # My app     
-    'vlr_auth',
+    # 'vlr_auth',
     'contactus', 
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -181,5 +185,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 RECIPIENT_ADDRESS = env('RECIPIENT_ADDRESS')
+
+
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

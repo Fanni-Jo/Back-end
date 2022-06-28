@@ -1,0 +1,8 @@
+<div class ="card-body">
+    <form action ="{% url 'customer_register'% }" method ="POST" novalidate>
+        {% csrf_token %}
+        {{form}}
+    </form>
+    <button>Submit</button>
+
+</div>
