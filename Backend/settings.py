@@ -24,7 +24,7 @@ env = environ.Env(
     RECIPIENT_ADDRESS=(str, ""),
 )
 environ.Env.read_env()
-
+CSRF_TRUSTED_ORIGINS = tuple(env.list("CSRF_TRUSTED_ORIGINS"))
 LOGOUT_REDIRECT_URL = "login"
 LOGIN_REDIRECT_URL = "home"
 # Quick-start development settings - unsuitable for production
