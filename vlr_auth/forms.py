@@ -1,9 +1,7 @@
-from unicodedata import name
 from django import forms
-from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import Profile,Review ,RATE_CHOICES
 
 class SignUpForm(UserCreationForm):
 	email = forms.EmailField(required=True)
@@ -19,4 +17,11 @@ class SignUpForm(UserCreationForm):
 			user.save()
 		return user
 
+class RateForm (forms.ModelForm):
+	text = forms.CharField(widget=forms.Textarea(attrs={'class':'materialize-textarea'}),required=False)
+	rate = forms.ChoiceField(choices = RATE_CHOICES , widget=forms.Select() ,required =True)
 
+
+	class Meta :
+		model = Review
+		fields=('text','rate')

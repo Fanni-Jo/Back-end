@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 class ContactView(FormView):
     template_name = 'contact/contact.html'
     form_class = ContactForm
-    success_url = reverse_lazy('contact:success')
+    success_url = reverse_lazy('contact')
 
     def form_valid(self, form):
         # Calls the custom send method
@@ -13,4 +13,4 @@ class ContactView(FormView):
         return super().form_valid(form)
     
 class ContactSuccessView(TemplateView):
-    template_name = 'contact/success.html'    
+    template_name = 'contact/success.html' 
