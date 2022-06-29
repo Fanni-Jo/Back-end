@@ -10,7 +10,8 @@ env = environ.Env(
     ENVIRONMENT=(str, "PRODUCTION"),
     ALLOW_ALL_ORIGINS=(bool, False),
     ALLOWED_HOSTS=(list, []),
-    CSRF_TRUSTED_ORIGINS = (list, [])    ALLOWED_ORIGINS=(list, []),
+    CSRF_TRUSTED_ORIGINS = (list, []),
+    ALLOWED_ORIGINS=(list, []),
     DATABASE_ENGINE=(str, "django.db.backends.sqlite3"),
     DATABASE_NAME=(str, BASE_DIR / "db.sqlite3"),
     DATABASE_USER=(str, ""),
@@ -21,7 +22,7 @@ env = environ.Env(
     EMAIL_HOST_USER=(str, ""),
     EMAIL_HOST_PASSWORD=(str, ""),
     RECIPIENT_ADDRESS=(str, ""),
-)
+    )   
 environ.Env.read_env()
 CSRF_TRUSTED_ORIGINS = tuple(env.list("CSRF_TRUSTED_ORIGINS"))
 LOGOUT_REDIRECT_URL = "login"
