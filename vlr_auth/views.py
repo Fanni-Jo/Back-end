@@ -102,7 +102,7 @@ def password_reset_request(request):
 					email_template_name = "password/password_reset_email.txt"
 					c = {
 					"email":user.email,
-					'domain':'https://fanni-jo.herokuapp.com/',
+					'domain':'fanni-jo.herokuapp.com',
 					'site_name': 'Website',
 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 					"user": user,
