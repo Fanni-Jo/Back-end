@@ -131,7 +131,7 @@ LANGUAGE_CODE = 'en-us'
 # LANGUAGE_CODE = 'ar-JO'
 
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC +3'
 
 USE_I18N = True
 

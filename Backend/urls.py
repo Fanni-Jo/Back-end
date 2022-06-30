@@ -30,7 +30,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view()),
     path('token/verify/', TokenVerifyView.as_view()),
     path('api/', include('vlr_auth.urls')),
-    path('contact_us/', include('contactus.urls')),
+    path('contact-us/', include('contactus.urls')),
     path('admin/', admin.site.urls),
     path("login/", auth_views.LoginView.as_view(template_name="registration/login.html"), name="login"),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password/password_reset_done.html'), name='password_reset_done'),
