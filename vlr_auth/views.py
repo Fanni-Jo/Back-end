@@ -42,6 +42,7 @@ class UserDetailView(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsOwnerOrReadOnly,permissions.IsAuthenticated)
+    lookup_field='username'
 
     
     
