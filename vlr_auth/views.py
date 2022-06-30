@@ -24,7 +24,8 @@ from .serializers import (UserSerializer,
                           ServiceProviderProfileSerializer,
                           ClientSerializer,
                           ReviewSerializer,
-                          ReviewWorkerRating                      
+                          ReviewWorkerRating ,
+                          ReviewServiceProviderSerializer                
                           )
 
 # {
@@ -40,10 +41,9 @@ from .serializers import (UserSerializer,
 class UserDetailView(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
+    permission_classes = (IsOwnerOrReadOnly,permissions.IsAuthenticated)
 
-    def get_object(self):
-        return self.request.user
+    
     
 class ClientRegisterView(ListCreateAPIView):
     permission_classes = permissions.IsAuthenticated,
@@ -51,19 +51,19 @@ class ClientRegisterView(ListCreateAPIView):
     serializer_class=ClientSerializer
     
 class ClientDetailView(RetrieveUpdateDestroyAPIView):
-    permission_classes = IsOwnerOrReadOnly,
+    permission_classes = (IsOwnerOrReadOnly,permissions.IsAuthenticated)
     queryset=Profile.objects.all()
     serializer_class=ClientSerializer
     lookup_field="username"
     
 class ServiceProviderdetailView(RetrieveUpdateDestroyAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = (IsOwnerOrReadOnly,permissions.IsAuthenticated)
     queryset=ServiceProviderProfile.objects.all()
     serializer_class = ServiceProviderProfileSerializer     
     lookup_field = 'username'
 
 class ServiceProviderSignupView(ListCreateAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = permissions.IsAuthenticated,
     queryset=ServiceProviderProfile.objects.all()
     serializer_class = ServiceProviderProfileSerializer     
     
@@ -126,7 +126,7 @@ def logout_view(request):
     return home(request)
 
 class ProfileView(ListCreateAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticated, )
     queryset=User.objects.all()
     serializer_class = UserSerializer      
 
@@ -349,12 +349,12 @@ class ReviewDetailViewSet(RetrieveUpdateDestroyAPIView):
     serializer_class = ReviewSerializer
     lookup_field = "username"
     
-class CreateReview(ListCreateAPIView):
+class CreateServiceProviderReview(ListCreateAPIView):
     permission_classes = (IsOwnerOrReadOnly, )
     queryset=ReviewWorkerRating.objects.all()
-    serializer_class = ReviewSerializer 
+    serializer_class = ReviewServiceProviderSerializer 
 
-class UpdateReview(RetrieveUpdateDestroyAPIView): 
+class UpdateServiceProviderReview(RetrieveUpdateDestroyAPIView): 
     permission_classes = (permissions.IsAuthenticated, )
     queryset=ReviewWorkerRating.objects.all()
-    serializer_class = ReviewSerializer
+    serializer_class = ReviewServiceProviderSerializer

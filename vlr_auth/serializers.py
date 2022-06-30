@@ -30,7 +30,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         model=Review
         fields =('id' ,'stars','username','date','text')
 
-class ReviewSerializer(serializers.ModelSerializer):
+class ReviewServiceProviderSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ReviewWorkerRating

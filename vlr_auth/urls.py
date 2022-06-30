@@ -15,8 +15,8 @@ from .views import (RegisterView,
                     UserDetailView,
                     ReviewViewSet,
                     ReviewDetailViewSet,
-                    CreateReview,
-                    UpdateReview
+                    CreateServiceProviderReview,
+                    UpdateServiceProviderReview
                     )
 
 
@@ -27,16 +27,19 @@ urlpatterns = [
     path('client/<str:username>',ClientDetailView.as_view(),name="client_detail"),
     path('signup/service_provider',ServiceProviderSignupView.as_view(),name="ServiceProvider_signup"),
     path('service_provider/<str:username>',ServiceProviderdetailView.as_view(),name="ServiceProvider_detail"),
+    
     # path('user/', LoadUserView.as_view(),name="user"),
     path("password_reset/", password_reset_request, name="password_reset"),
     path("home/", home, name="home"),
     path("logout/", logout_view, name="logout"),
     path("userdetail/<str:username>", LoadUserdetail.as_view(), name="userdetail"),
     path('activate/<uidb64>/<token>/', activate, name='activate'),
+    
     # path('test/',ProfileView.as_view(),name="test"),
     # path('worker/',WorkerProfileView.as_view(),name="worker"),
+    
     path("review/", ReviewViewSet.as_view(), name="review"),
     path('review/<int:pk>', ReviewDetailViewSet.as_view(), name="review_detail"),
-    path("review_provider/", CreateReview.as_view(), name="review"),
-    path("review_provider/<int:pk>", UpdateReview.as_view(), name="reviewdetail"),
+    path("review_provider/", CreateServiceProviderReview.as_view(), name="review"),
+    path("review_provider/<int:pk>", UpdateServiceProviderReview.as_view(), name="reviewdetail"),
 ]
