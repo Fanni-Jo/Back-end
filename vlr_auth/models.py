@@ -72,7 +72,7 @@ class ServiceProviderProfile(models.Model):
     address = models.TextField(verbose_name='address')
     years_of_exp = models.IntegerField(verbose_name='experience')
     media = models.FileField(null=True, blank=True, verbose_name='image')
-    date = models.DateTimeField(default=timezone.now,editable=False)
+    date = models.DateTimeField(auto_now_add=True,editable=False)
     gender= models.CharField(max_length=6,choices=[('MALE','MALE'),('FEMALE','FEMALE')],default=None)
     
     def get_absolute_url(self):
@@ -81,8 +81,9 @@ class ServiceProviderProfile(models.Model):
         return str(self.username)
 
     def save(self, *args, **kwargs):
-        self.username = self.user.username
-        super(ServicerProviderProfile, self).save(*args, **kwargs)
+        self.username = self.username
+        super(ServiceProviderProfile, self).save(*args, **kwargs)
+        
     class Meta:
     
         ordering = ('-date',)
@@ -100,7 +101,7 @@ class Profile(models.Model):
     #     return super().save(*args,**kwargs)
     
     def __str__(self):
-        return self.user.username
+        return self.username
     
 class Review(models.Model):
     username=models.ForeignKey(User ,on_delete=models.CASCADE)
@@ -114,7 +115,7 @@ class Review(models.Model):
         self.username = get_user_model().objects.get(id=self.username.id)
         super(Review, self).save(*args, **kwargs)
     def __str__(self):
-        return self.user.username
+        return self.username
 
 class ReviewWorkerRating(models.Model):
     # ondelete cascade if the worker delete the comment will also delete

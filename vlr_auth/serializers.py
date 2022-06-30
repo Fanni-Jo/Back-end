@@ -6,7 +6,7 @@ class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username','email','date_joined')
+        fields = ('first_name', 'last_name', 'username','email')
         
 
         
@@ -14,8 +14,9 @@ class ServiceProviderProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ServiceProviderProfile
-        fields = "__all__"
+        fields = ('category','phone','phone2','email','address','years_of_exp','media','gender')
         
+    
 class ClientSerializer(serializers.ModelSerializer):
     
     class Meta:
@@ -24,6 +25,7 @@ class ClientSerializer(serializers.ModelSerializer):
         
 
 class ReviewSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model=Review
         fields =('id' ,'stars','username','date','text')
