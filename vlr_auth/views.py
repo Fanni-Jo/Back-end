@@ -359,3 +359,4 @@ class UpdateServiceProviderReview(RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticated, )
     queryset=ReviewWorkerRating.objects.all()
     serializer_class = ReviewServiceProviderSerializer
+    lookup_field = "username"

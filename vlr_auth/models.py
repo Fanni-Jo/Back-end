@@ -74,7 +74,7 @@ class ServiceProviderProfile(models.Model):
     media = models.FileField(null=True, blank=True, verbose_name='image')
     date = models.DateTimeField(auto_now_add=True,editable=False)
     gender= models.CharField(max_length=6,choices=[('MALE','MALE'),('FEMALE','FEMALE')],default=None)
-    
+   
     def get_absolute_url(self):
         return f'/service_provider/{self.username}'
     def __str__(self):
