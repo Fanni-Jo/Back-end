@@ -71,7 +71,9 @@ class ServiceProviderProfile(models.Model):
     email = models.EmailField(verbose_name='email',blank=True,null=True)
     address = models.TextField(verbose_name='address')
     years_of_exp = models.IntegerField(verbose_name='experience')
-    media = models.FileField(null=True, blank=True, verbose_name='image')
+    profile_picture=models.ImageField(upload_to='profile-pictures-service-providers/',blank=True)
+
+    media = models.FileField(upload_to='profile_pictures/',null=True, blank=True, verbose_name='image')
     date = models.DateTimeField(auto_now_add=True,editable=False)
     gender= models.CharField(max_length=6,choices=[('MALE','MALE'),('FEMALE','FEMALE')],default=None)
    
