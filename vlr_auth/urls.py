@@ -24,9 +24,9 @@ urlpatterns = [
     path('signup/', RegisterView.as_view(),name="signup"),
     path('user/<str:username>/', UserDetailView.as_view(),name="user"),
     path('signup/client',ClientRegisterView.as_view(),name="client_signup"),
-    path('client/<str:username>',ClientDetailView.as_view(),name="client_detail"),
-    path('signup/service_provider',ServiceProviderSignupView.as_view(),name="ServiceProvider_signup"),
-    path('service-provider/<str:username>',ServiceProviderdetailView.as_view(),name="ServiceProvider_detail"),
+    path('client/<int:pk>',ClientDetailView.as_view(),name="client_detail"),
+    path('signup/service-provider',ServiceProviderSignupView.as_view(),name="ServiceProvider_signup"),
+    path('service-provider/<int:pk>',ServiceProviderdetailView.as_view(),name="ServiceProvider_detail"),
     
     # path('user/', LoadUserView.as_view(),name="user"),
     path("password-reset/", password_reset_request, name="password_reset"),

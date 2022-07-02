@@ -79,12 +79,7 @@ class ServiceProviderProfile(models.Model):
    
     def get_absolute_url(self):
         return f'/service_provider/{self.username}'
-    def __str__(self):
-        return str(self.username)
-
-    def save(self, *args, **kwargs):
-        self.username = self.username
-        super(ServiceProviderProfile, self).save(*args, **kwargs)
+  
         
     class Meta:
     
@@ -102,8 +97,8 @@ class Profile(models.Model):
     # def save(self,*args,**kwargs):
     #     return super().save(*args,**kwargs)
     
-    def __str__(self):
-        return self.username
+    # def __str__(self):
+    #     return self.username
     
 class Review(models.Model):
     username=models.ForeignKey(User ,on_delete=models.CASCADE)
@@ -116,8 +111,8 @@ class Review(models.Model):
     def save(self, *args, **kwargs):
         self.username = get_user_model().objects.get(id=self.username.id)
         super(Review, self).save(*args, **kwargs)
-    def __str__(self):
-        return self.username
+    # def __str__(self):
+    #     return self.username
 
 class ReviewWorkerRating(models.Model):
     # ondelete cascade if the worker delete the comment will also delete
