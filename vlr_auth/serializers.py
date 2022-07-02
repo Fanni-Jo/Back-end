@@ -14,7 +14,7 @@ class ServiceProviderProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ServiceProviderProfile
-        fields = ('category','phone','phone2','email','address','years_of_exp','media','gender')
+        fields = ('category','phone','phone2','email','address','years_of_exp','media','gender','profile_picture')
         
     
 class ClientSerializer(serializers.ModelSerializer):
