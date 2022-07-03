@@ -16,11 +16,13 @@ from .views import (RegisterView,
                     ReviewViewSet,
                     ReviewDetailViewSet,
                     CreateServiceProviderReview,
-                    UpdateServiceProviderReview
+                    UpdateServiceProviderReview,
+                    CategoryView
                     )
 
 
 urlpatterns = [
+    path('category/', CategoryView.as_view()),
     path('signup/', RegisterView.as_view(),name="signup"),
     path('user/<str:username>/', UserDetailView.as_view(),name="user"),
     path('signup/client',ClientRegisterView.as_view(),name="client_signup"),

@@ -14,7 +14,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib.auth import logout
 from django.contrib import messages
-from .models import Profile,ServiceProviderProfile,Review
+from .models import Profile,ServiceProviderProfile,Review,Category
 from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
@@ -25,7 +25,8 @@ from .serializers import (UserSerializer,
                           ClientSerializer,
                           ReviewSerializer,
                           ReviewWorkerRating ,
-                          ReviewServiceProviderSerializer                
+                          ReviewServiceProviderSerializer,
+                          CategorySerializer                
                           )
 
 # {
@@ -38,6 +39,11 @@ from .serializers import (UserSerializer,
 #     "re_password": "123456barham",
 #     "profile_picture":"3.jpg"
 # }
+class CategoryView(ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = (permissions.AllowAny,)
+    
 class UserDetailView(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
