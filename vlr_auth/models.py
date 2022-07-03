@@ -79,8 +79,7 @@ class ServiceProviderProfile(models.Model):
    
     def get_absolute_url(self):
         return f'/service_provider/{self.username}'
-  
-        
+      
     class Meta:
     
         ordering = ('-date',)
@@ -105,14 +104,15 @@ class Review(models.Model):
     date=models.DateTimeField(auto_now_add=True)
     text=models.TextField(max_length=3000 ,blank =True)
     stars=models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
-
-    # class Meta:
-    #     unique_together =
+    class Meta:
+        ordering = ('-date',)
+        verbose_name_plural = ('reviews')
+        verbose_name = ('review')
+        
     def save(self, *args, **kwargs):
         self.username = get_user_model().objects.get(id=self.username.id)
-        super(Review, self).save(*args, **kwargs)
-    # def __str__(self):
-    #     return self.username
+        return super(Review, self).save(*args, **kwargs)
+   
 
 class ReviewWorkerRating(models.Model):
     # ondelete cascade if the worker delete the comment will also delete

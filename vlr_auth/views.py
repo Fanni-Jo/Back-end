@@ -41,7 +41,7 @@ from .serializers import (UserSerializer,
 class UserDetailView(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsOwnerOrReadOnly,permissions.IsAuthenticated)
+    permission_classes = (IsOwnerOrReadOnly,)
     lookup_field='username'
 
     
@@ -55,13 +55,13 @@ class ClientDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.AllowAny)
     queryset=Profile.objects.all()
     serializer_class=ClientSerializer
-    # lookup_field= "username"
+    lookup_field= "username"
     
 class ServiceProviderdetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.AllowAny,)
     queryset=ServiceProviderProfile.objects.all()
     serializer_class = ServiceProviderProfileSerializer     
-    # lookup_field = 'username'
+    lookup_field = 'username'
     
     
 class ServiceProviderSignupView(ListCreateAPIView):

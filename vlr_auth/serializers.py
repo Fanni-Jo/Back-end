@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import ServiceProviderProfile,Profile,Review,ReviewWorkerRating
+from django.contrib.auth import get_user_model
+
+from .models import ServiceProviderProfile,Profile,Review,ReviewWorkerRating,Category
 
 class UserSerializer(serializers.ModelSerializer):
     
@@ -14,7 +16,9 @@ class ServiceProviderProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ServiceProviderProfile
-        fields = ('category','phone','phone2','email','address','years_of_exp','media','gender','profile_picture')
+        fields = ('username','category','phone','phone2','email','address','years_of_exp','media','gender','profile_picture')
+    def save(self): 
+        category = Category.objects.get(title=category)
         
     
 class ClientSerializer(serializers.ModelSerializer):
@@ -25,13 +29,19 @@ class ClientSerializer(serializers.ModelSerializer):
         
 
 class ReviewSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
         model=Review
         fields =('id' ,'stars','username','date','text')
+        
+    def save(self,*args,**kwargs):
+        self.username = get_user_model().objects.get(username=self.username)                
+   
 
 class ReviewServiceProviderSerializer(serializers.ModelSerializer):
-    
+        
     class Meta:
         model = ReviewWorkerRating
-        fields = ["service_provider","subject","username","review","rating","created_date","updated_date"]        
+        fields = ["service_provider","subject","username","review","rating","created_date","updated_date"]
+    def save(self,*args,**kwargs):
+        self.username = get_user_model().objects.get(id=self.username.id)            
