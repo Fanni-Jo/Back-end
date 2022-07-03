@@ -52,7 +52,7 @@ class ClientRegisterView(ListCreateAPIView):
     serializer_class=ClientSerializer
     
 class ClientDetailView(RetrieveUpdateDestroyAPIView):
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = (IsOwnerOrReadOnly,)
     queryset=Profile.objects.all()
     serializer_class=ClientSerializer
     lookup_field= "username"
@@ -65,7 +65,7 @@ class ServiceProviderdetailView(RetrieveUpdateDestroyAPIView):
     
     
 class ServiceProviderSignupView(ListCreateAPIView):
-    permission_classes = permissions.IsAuthenticated,
+    permission_classes = (IsOwnerOrReadOnly,)
     queryset=ServiceProviderProfile.objects.all()
     serializer_class = ServiceProviderProfileSerializer     
     
