@@ -67,7 +67,7 @@ class ServiceProviderdetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.AllowAny,)
     queryset=ServiceProviderProfile.objects.all()
     serializer_class = ServiceProviderProfileSerializer     
-    lookup_field = 'username'
+    # lookup_field = 'username'
     
     
 class ServiceProviderSignupView(ListCreateAPIView):
