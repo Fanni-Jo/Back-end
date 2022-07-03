@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 class ContactForm(forms.Form):
 
     name = forms.CharField(max_length=120,label='Full Name')
-    email = forms.EmailField(required=True, label=' Email')
+    email = forms.EmailField(required=True, label='Email')
     subject = forms.CharField(max_length=70, label='Subject')
     message = forms.CharField(widget=forms.Textarea, label='We are listening!')
 
