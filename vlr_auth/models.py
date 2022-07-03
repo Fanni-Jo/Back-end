@@ -86,7 +86,7 @@ class ServiceProviderProfile(models.Model):
 class Profile(models.Model):
     username = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = PhoneNumberField(null=False, blank=False, unique=True,region='JO')
-    profile_picture=models.ImageField(upload_to='profile_pictures/',blank=True)
+    profile_picture=models.ImageField(upload_to='profile_pictures/',blank=True,null=True)
     birthdate=models.DateField(null=True, blank=True)
     gender= models.CharField(max_length=6,choices=[('MALE','MALE'),('FEMALE','FEMALE')],default=None,blank=True,null=True)
     
