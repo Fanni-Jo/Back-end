@@ -2,14 +2,15 @@ from django.views.generic import FormView, TemplateView
 from .forms import ContactForm
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
-
+from rest_framework import permissions
 class ContactView(FormView):
     template_name = 'contact/contact.html'
     form_class = ContactForm
     success_url = reverse_lazy('success')
+    permissions_classes = [permissions.AllowAny,]
     
-        @method_decorator(csrf_exempt)    
-        def form_valid(self, form):
+    @csrf_exempt 
+    def form_valid(self, form):
         # Calls the custom send method
         form.send()
         return super().form_valid(form)
