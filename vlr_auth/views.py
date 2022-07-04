@@ -28,6 +28,7 @@ from .serializers import (UserSerializer,
                           ReviewServiceProviderSerializer,
                           CategorySerializer                
                           )
+from django.views.decorators.csrf import csrf_exempt
 
 # {
 #     "first_name": "John",
@@ -100,7 +101,8 @@ def activate(request,uidb64, token):
     else:
         messages.error(request, 'Invalid activation link')
         return redirect('register')
-
+    
+@csrf_exempt
 def password_reset_request(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)
