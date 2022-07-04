@@ -8,8 +8,8 @@ class ContactView(FormView):
     form_class = ContactForm
     success_url = reverse_lazy('success')
     
-    @csrf_exempt
-    def form_valid(self, form):
+        @method_decorator(csrf_exempt)    
+        def form_valid(self, form):
         # Calls the custom send method
         form.send()
         return super().form_valid(form)
