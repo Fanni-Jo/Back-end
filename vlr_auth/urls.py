@@ -18,7 +18,7 @@ from .views import (RegisterView,
                     CreateServiceProviderReview,
                     UpdateServiceProviderReview,
                     CategoryView,
-                    userview
+                    userview,passreset
                     )
 
 
