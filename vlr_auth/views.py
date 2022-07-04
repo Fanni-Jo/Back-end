@@ -50,7 +50,10 @@ class UserDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsOwnerOrReadOnly,)
     lookup_field='username'
 
-    
+class userview(ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (permissions.AllowAny,)
     
 class ClientRegisterView(ListCreateAPIView):
     permission_classes = IsOwnerOrReadOnly,
