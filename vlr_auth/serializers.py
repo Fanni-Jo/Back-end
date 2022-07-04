@@ -33,9 +33,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model=Review
         fields =('id' ,'stars','username','date','text')
-        
-    def save(self,*args,**kwargs):
-        self.username = get_user_model().objects.get(username=self.username)                
+                      
    
 
 class ReviewServiceProviderSerializer(serializers.ModelSerializer):
