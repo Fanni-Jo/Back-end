@@ -3,7 +3,6 @@ from .forms import ContactForm
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 
-@csrf_exempt
 class ContactView(FormView):
     template_name = 'contact/contact.html'
     form_class = ContactForm
