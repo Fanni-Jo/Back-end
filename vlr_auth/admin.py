@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile,Category,ServiceProviderProfile,Review
+from .models import Profile,Category,ServiceProviderProfile,Review,ReviewWorkerRating
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
@@ -39,3 +39,4 @@ admin.site.register(Category)
 admin.site.register(ServiceProviderProfile)
 admin.site.register(Profile)
 admin.site.register(Review)
+admin.site.register(ReviewWorkerRating)
