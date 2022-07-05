@@ -41,8 +41,7 @@ class ReviewServiceProviderSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReviewWorkerRating
         fields = ["service_provider","subject","username","review","rating","created_date","updated_date"]
-    def save(self,*args,**kwargs):
-        self.username = get_user_model().objects.get(id=self.username.id)  
+        read_only_fields = ["created_date","updated_date"]
         
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:

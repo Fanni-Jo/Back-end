@@ -119,7 +119,7 @@ class ReviewWorkerRating(models.Model):
     # models.CharField(max_length=100,default=None,help_text="servicer_provider")
 #   models.ForeignKey(ServicerProviderProfile,on_delete=models.CASCADE)        
     service_provider=models.ForeignKey(ServiceProviderProfile,on_delete=models.CASCADE)   
-    username=models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
+    username=models.ForeignKey(User,on_delete=models.CASCADE)
     # username=models.ForeignKey(User.get_full_name,on_delete=models.CASCADE)
     subject=models.CharField(max_length=100,blank=True)
     review=models.TextField(max_length=500,blank=True)
