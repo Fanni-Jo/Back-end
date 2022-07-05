@@ -173,7 +173,6 @@ SIMPLE_JWT = {
 
 CORS_ORIGIN_WHITELIST = env.list("ALLOWED_ORIGINS")
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
-CORS_ORIGIN_ALLOW_ALL = env.bool("ALLOW_ALL_ORIGINS")
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env('EMAIL_HOST')
@@ -182,6 +181,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 RECIPIENT_ADDRESS = env('RECIPIENT_ADDRESS')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'modia')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
