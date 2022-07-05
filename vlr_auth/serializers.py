@@ -16,7 +16,7 @@ class ServiceProviderProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ServiceProviderProfile
-        fields = ('username','category','phone','phone2','email','address','years_of_exp','media','gender','profile_picture')
+        fields = ('username','category','first_name','last_name','phone','phone2','email','address','years_of_exp','media','gender','profile_picture')
     # def save(self): 
     #     category= Category.objects.get(title=self.Meta.model.category)
         
