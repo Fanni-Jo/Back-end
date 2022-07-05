@@ -61,6 +61,8 @@ class ServiceProviderProfile(models.Model):
     
     
     username = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name= models.CharField(verbose_name='first_name',max_length=100,null=True,blank=True)
+    last_name= models.CharField(verbose_name='last_name',max_length=100,null=True,blank=True)
 
     category = models.ForeignKey(Category,on_delete=models.CASCADE,verbose_name='Category ')
     phone = PhoneNumberField(verbose_name='phone no.',unique=True)
