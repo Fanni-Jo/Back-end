@@ -57,6 +57,12 @@ class Category(models.Model):
 #         ordering = ('-date',)
 #         verbose_name_plural = ('العملاء')
 #         verbose_name = ('عميل')
+
+def upload_path (instance, filnane):
+    return '/'.join( ['profile_pictures', str(instance.username), filnane])
+def upload_path_m (instance, filnane):
+    return '/'.join( ['profile_pictures', str(instance.username), filnane])
+
 class ServiceProviderProfile(models.Model):
     
     
@@ -70,9 +76,9 @@ class ServiceProviderProfile(models.Model):
     email = models.EmailField(verbose_name='email',blank=True,null=True)
     address = models.TextField(verbose_name='address')
     years_of_exp = models.IntegerField(verbose_name='experience')
-    profile_picture=models.ImageField(upload_to='profile-pictures-service-providers/',blank=True,null=True,verbose_name='profile picture')
+    profile_picture=models.ImageField(upload_to=upload_path,blank=True,null=True,verbose_name='profile picture')
     
-    media = models.FileField(upload_to='profile_pictures/',null=True, blank=True, verbose_name='image')
+    media = models.FileField(upload_to=upload_path_m,null=True, blank=True, verbose_name='image')
     date = models.DateTimeField(auto_now_add=True,editable=False)
     gender= models.CharField(max_length=6,choices=[('MALE','MALE'),('FEMALE','FEMALE')],default=None)
    
@@ -88,7 +94,7 @@ class ServiceProviderProfile(models.Model):
 class Profile(models.Model):
     username = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = PhoneNumberField(null=False, blank=False, unique=True,region='JO')
-    profile_picture=models.ImageField(upload_to='profile_pictures/',blank=True,null=True)
+    profile_picture=models.ImageField(upload_to=upload_path,blank=True,null=True)
     birthdate=models.DateField(null=True, blank=True)
     gender= models.CharField(max_length=6,choices=[('MALE','MALE'),('FEMALE','FEMALE')],default=None,blank=True,null=True)
     
