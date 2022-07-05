@@ -58,6 +58,10 @@ class Category(models.Model):
 #         verbose_name_plural = ('العملاء')
 #         verbose_name = ('عميل')
 
+def upload_path (instance, filnane):
+    return '/'.join( ['profile_pictures', str(instance.username), filnane])
+def upload_path_m (instance, filnane):
+    return '/'.join( ['profile_pictures', str(instance.username), filnane])
 
 class ServiceProviderProfile(models.Model):
     
@@ -135,9 +139,3 @@ class ReviewWorkerRating(models.Model):
 
     def __str__(self):
         return self.subject
-    
-def upload_path (instance, filnane):
-    return '/'.join( ['profile_pictures', str(instance.username), filnane])
-def upload_path_m (instance, filnane):
-    return '/'.join( ['profile_pictures', str(instance.username), filnane])
-    
