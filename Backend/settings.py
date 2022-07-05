@@ -1,14 +1,14 @@
 from pathlib import Path
 from datetime import timedelta
 import environ
-import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
     DEBUG=(bool, True),
     ENVIRONMENT=(str, "PRODUCTION"),
-    ALLOW_ALL_ORIGINS=(bool, True),
+    ALLOW_ALL_ORIGINS=(bool, False),
     ALLOWED_HOSTS=(list, []),
     CSRF_TRUSTED_ORIGINS = (list, []),
     ALLOWED_ORIGINS=(list, []),
@@ -171,9 +171,8 @@ SIMPLE_JWT = {
 }
 
 
-CORS_ORIGIN_WHITELIST = env.list("ALLOWED_ORIGINS")
+CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
-CORS_ORIGIN_ALLOW_ALL = env.bool("ALLOW_ALL_ORIGINS")
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env('EMAIL_HOST')
