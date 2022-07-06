@@ -170,8 +170,9 @@ SIMPLE_JWT = {
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken', ),
 }
 
-
-CORS_ORIGIN_WHITELIST = env.list("ALLOWED_ORIGINS")
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000"
+]
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
