@@ -15,9 +15,9 @@ class Category(models.Model):
         verbose_name = ('Category')
 
 def upload_path(instance, filname):
-    return '/'.join(['covers', str(instance.username), filname])
+    return '/'.join(['profile_pictures', str(instance.username), filname])
 def upload_path_media(instance, filname):
-    return '/'.join(['covers', str(instance.username), filname])
+    return '/'.join(['profile_pictures', str(instance.username), filname])
 
 class ServiceProviderProfile(models.Model):
     
