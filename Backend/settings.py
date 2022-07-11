@@ -171,7 +171,8 @@ SIMPLE_JWT = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "https://fanni.vercel.app"
 ]
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
